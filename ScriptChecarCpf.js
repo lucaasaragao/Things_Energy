@@ -18,3 +18,7 @@ const verificarCpf = tipoDocumento =>{ // função nova
 }
 console.log(verificarCpf("102462874466"));
 
+
+
+// Tentar fazer um ternario para esse tipo de verificação
+let verificaDocumento = tipoDocumento == 11 || tipoDocumento == 10 ? 'cpf': 'cnpj';
