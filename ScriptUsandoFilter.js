@@ -37,7 +37,7 @@ const corpoHistoricoFaturas = `{
             "faturadoPorMedia": false,
             "faturadoPorMinimo": false,
             "indicadorDebitoAutomatico": false,
-            "faturaDeConsumo": true,
+            "faturaDeConsumo": false,
             "indicadorCorte": false,
             "valorLiquido": 86.25,
             "valorIluminacaoPublica": 3.45,
@@ -136,12 +136,12 @@ function run(corpoHistoricoFaturas) {
     const corpoFaturas = JSON.parse(corpoHistoricoFaturas).lista;
     const codEmpresa = JSON.parse(corpoHistoricoFaturas).codigoEmpresa;
 
-    const consumo = corpoFaturas.consumo;
+    const consumo = corpoFaturas.faturaDeConsumo;
     const isRed = [];
     const procurarConsumo = corpoFaturas.filter((item) => {
-        return item.consumo === 0;
+        return item.consumo == false;
     })
-    if (procurarConsumo.length == 1 && procurarConsumo[0].valorFatura == procurarConsumo[0].detalhamentoFatura
+    if (procurarConsumo.length >= 1 && procurarConsumo[0].valorFatura == procurarConsumo[0].detalhamentoFatura
         .outrosServicos) {
         isRed.push(
             codEmpresa,
